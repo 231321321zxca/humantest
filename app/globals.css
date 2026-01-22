@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* デフォルト (Violet) */
+  --primary-color: 139 92 246;   /* Violet-500 */
+  --secondary-color: 79 70 229;  /* Indigo-600 */
+  --accent-glow: 167 139 250;    /* Violet-400 (Glow) */
+}
+
+/* テーマごとの色定義 */
+[data-theme='blue'] {
+  --primary-color: 59 130 246;   /* Blue-500 */
+  --secondary-color: 37 99 235;  /* Blue-600 */
+  --accent-glow: 96 165 250;     /* Blue-400 */
+}
+
+[data-theme='emerald'] {
+  --primary-color: 16 185 129;   /* Emerald-500 */
+  --secondary-color: 5 150 105;  /* Emerald-600 */
+  --accent-glow: 52 211 153;     /* Emerald-400 */
+}
+
+[data-theme='rose'] {
+  --primary-color: 244 63 94;    /* Rose-500 */
+  --secondary-color: 225 29 72;  /* Rose-600 */
+  --accent-glow: 251 113 133;    /* Rose-400 */
+}
+
+[data-theme='orange'] {
+  --primary-color: 249 115 22;   /* Orange-500 */
+  --secondary-color: 234 88 12;  /* Orange-600 */
+  --accent-glow: 251 146 60;     /* Orange-400 */
+}
+
+body {
+  background-color: #050507;
+  color: #fff;
+}
