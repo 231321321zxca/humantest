@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Script from "next/script"; // ★ これが必要です
+// import Script from "next/script"; // ← 一旦コメントアウト
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,13 +18,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* ★ Google AdSense Code */}
-        <Script
+        {/* ★ AdSense審査用: Next.jsの機能を使わず直接書く */}
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7283737754158866"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
+        ></script>
       </head>
       <body className={inter.className}>{children}</body>
     </html>
