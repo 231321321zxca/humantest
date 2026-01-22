@@ -27,7 +27,7 @@ export default function GamerBench() {
           <h1 className="text-lg font-bold text-zinc-100 group-hover:text-white transition-colors">GamerBench</h1>
         </div>
         <div className="text-xs font-mono text-zinc-500 border border-zinc-800 px-3 py-1 rounded-md">
-          v1.1.1 (Fix)
+          v1.1.2 (Safe)
         </div>
       </header>
 
@@ -155,8 +155,8 @@ const GameContainer = ({ children, onBack }: { children: React.ReactNode, onBack
 function ReactionGame({ onBack }: { onBack: () => void }) {
   const [state, setState] = useState<'waiting' | 'ready' | 'clicked' | 'early' | 'result'>('waiting');
   const [score, setScore] = useState<number>(0);
-  // ★FIX: 初期値に null を追加しました
-  const timer = useRef<NodeJS.Timeout | null>(null);
+  // ★FIX: 型定義を any にしてエラー回避
+  const timer = useRef<any>(null);
   const startT = useRef<number>(0);
 
   const handleAction = () => {
@@ -204,7 +204,8 @@ function StrafeGame({ onBack }: { onBack: () => void }) {
   const [msg, setMsg] = useState("Hold 'A' to start");
   
   const stateRef = useRef(state);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  // ★FIX: 型定義を any にしてエラー回避
+  const timerRef = useRef<any>(null);
   const startTRef = useRef(0);
 
   useEffect(() => { stateRef.current = state; }, [state]);
