@@ -27,7 +27,7 @@ export default function GamerBench() {
           <h1 className="text-lg font-bold text-zinc-100 group-hover:text-white transition-colors">GamerBench</h1>
         </div>
         <div className="text-xs font-mono text-zinc-500 border border-zinc-800 px-3 py-1 rounded-md">
-          v1.1 (Dark)
+          v1.1.1 (Fix)
         </div>
       </header>
 
@@ -155,7 +155,8 @@ const GameContainer = ({ children, onBack }: { children: React.ReactNode, onBack
 function ReactionGame({ onBack }: { onBack: () => void }) {
   const [state, setState] = useState<'waiting' | 'ready' | 'clicked' | 'early' | 'result'>('waiting');
   const [score, setScore] = useState<number>(0);
-  const timer = useRef<NodeJS.Timeout>();
+  // ★FIX: 初期値に null を追加しました
+  const timer = useRef<NodeJS.Timeout | null>(null);
   const startT = useRef<number>(0);
 
   const handleAction = () => {
@@ -167,7 +168,7 @@ function ReactionGame({ onBack }: { onBack: () => void }) {
           startT.current = Date.now();
         }, ms);
     } else if (state === 'ready') {
-      clearTimeout(timer.current);
+      if (timer.current) clearTimeout(timer.current);
       setState('early');
     } else if (state === 'clicked') {
       setScore(Date.now() - startT.current);
@@ -569,7 +570,7 @@ function NumberMemoryGame({ onBack }: { onBack: () => void }) {
     );
 }
 
-// --- 8. Typing Test (NEW) ---
+// --- 8. Typing Test ---
 function TypingGame({ onBack }: { onBack: () => void }) {
     const textSamples = [
         "The quick brown fox jumps over the lazy dog.",
@@ -607,7 +608,7 @@ function TypingGame({ onBack }: { onBack: () => void }) {
             // Finished
             const timeMin = (Date.now() - startTime) / 60000;
             const words = targetText.length / 5;
-            setWpm(Math.round(words / (timeMin || 0.01))); // avoid divide by zero
+            setWpm(Math.round(words / (timeMin || 0.01))); 
             setAccuracy(100); 
             setGameState('result');
         } else if (val.length >= targetText.length) {
